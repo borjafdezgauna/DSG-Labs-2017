@@ -53,5 +53,7 @@ char World::move(int originX, int originY, int destX, int destY)
 
 void World::draw()
 {
+	system("cls");
+
 
 }
