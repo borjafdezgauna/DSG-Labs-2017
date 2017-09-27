@@ -28,19 +28,19 @@ char Player::move(int destX, int destY)
 
 char Player::moveUp()
 {
-	move(m_posX, m_posY - 1);
+	return move(m_posX, m_posY - 1);
 }
 
 char Player::moveDown()
-{
-	move(m_posX, m_posY + 1);
+{ 
+	return move(m_posX, m_posY + 1);
 }
 char Player::moveRight()
 {
-	move(m_posX+1, m_posY);
+	return move(m_posX+1, m_posY);
 }
 char Player::moveLeft()
 {
-	move(m_posX -1, m_posY);
+	return move(m_posX -1, m_posY);
 
 }

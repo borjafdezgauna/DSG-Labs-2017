@@ -69,7 +69,7 @@ char World::move(int originX, int originY, int destX, int destY)
 {
 	char value= get(originX, originY);
 	set(destX, destY, value);
-
+	return value;
 }
 
 void World::draw()
