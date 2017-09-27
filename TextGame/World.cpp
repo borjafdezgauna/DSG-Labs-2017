@@ -12,7 +12,11 @@ World::World(int sizeX, int sizeY, char defaultValue)
 	m_sizeY = sizeY;
 	int numCeldas = sizeX*sizeY;
 	m_pContent = new char[numCeldas];
+	for (int i = 0; i < numCeldas; i++) {
+		m_pContent[i] = defaultValue;
+	}
 	m_defaultValue = defaultValue;
+	m_timer.start();
 }
 
 World::~World()
@@ -76,11 +80,24 @@ char World::move(int originX, int originY, int destX, int destY)
 void World::draw()
 {
 	system("cls");
+	for (int a = 0; a < m_sizeX + 2; a++) {
+		std::cout << "*";
+	}
+	std::cout << "\n";
 	for (int j = 0; j < m_sizeY; j++) {
+		std::cout << "*";
 		for (int i = 0; i < m_sizeX; i++) {
 			std::cout << get(i, j);
 		}
-		std::cout << "\n";
+		std::cout << "*\n";
 }
+	for (int b = 0; b < m_sizeX + 2; b++) {
+		std::cout << "*";
 
+	}
+	std::cout << std::fixed;
+	std::cout.precision(2);
+	std::cout << "\nTime = " << m_timer.getElapsedTime() << " \n";
+	std::cout << "Points = " << 0;
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
