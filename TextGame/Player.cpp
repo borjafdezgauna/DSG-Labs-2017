@@ -22,9 +22,10 @@ Player::~Player()
 char Player::move(int destX, int destY)
 {
 	m_world.clamp(destX, destY);
+	
+	m_world.move(m_posX,m_posY,destX,destY);
 	this->m_posX = destX;
 	this->m_posY = destY;
-	
 	return m_world.get(destX,destY);
 
 }
