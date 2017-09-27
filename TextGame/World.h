@@ -11,6 +11,7 @@ class World
 	char m_coinDefaultValue;
 	//tamaño del mapa en x e y
 	int m_sizeX, m_sizeY;
+	int points;
 	
 
 	int getPosInArray(int x, int y) const;

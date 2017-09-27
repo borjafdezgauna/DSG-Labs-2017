@@ -84,12 +84,20 @@ void World::clamp(int& x, int& y) const
 
 char World::move(int originX, int originY, int destX, int destY)
 {
-	char value= get(originX, originY);	
+	points = 0;
+	char originValue= get(originX, originY);	
+	char destValue = get(destX, destY);
+	
+		
+		
 	if (originX != destX || originY != destY) {
-		set(destX, destY, value);
+		if (destValue = m_coinDefaultValue) {
+			points = points + 1;
+		}
+		set(destX, destY, originValue);
 		set(originX, originY, m_defaultValue);
 	}
-	return value;
+	return originValue;
 }
 
 void World::draw()
@@ -114,6 +122,6 @@ void World::draw()
 	std::cout << std::fixed;
 	std::cout.precision(2);
 	std::cout << "\nTime = " << m_timer.getElapsedTime() << " \n";
-	std::cout << "Points = " << 0;
+	std::cout << "Points = " << points;
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
