@@ -79,6 +79,7 @@ void World::draw()
 		for (int i = 0; i < m_sizeX; i++) {
 			std::cout << get(i, j);
 		}
+		std::cout << "\n";
 }
 
 }

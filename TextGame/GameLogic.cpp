@@ -19,7 +19,7 @@ GameLogic::~GameLogic()
 
 bool GameLogic::processInput()
 {
-	if (!kbhit()) return false;
+	if (!_kbhit()) return false;
 
 	char c = _getch();
 	switch (c)
