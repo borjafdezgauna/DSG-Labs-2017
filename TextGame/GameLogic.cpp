@@ -19,5 +19,16 @@ GameLogic::~GameLogic()
 
 bool GameLogic::processInput()
 {
+	if (!kbhit()) return;
 
+	char c = _getch();
+	switch (c)
+	{
+	case 'w':
+	case 'W':
+		m_player.moveUp(); break;
+	case 27:
+		return true;
+	}
+	return false;
 }
