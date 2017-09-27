@@ -21,35 +21,26 @@ Player::~Player()
 
 char Player::move(int destX, int destY)
 {
+	m_world.clamp(destX, destY);
 	this->m_posX = destX;
 	this->m_posY = destY;
-
 }
 
 char Player::moveUp()
 {
-	if(m_posY > 0){
-	this->move(m_posX,m_posY-1);
-	}
+	move(m_posX, m_posY - 1);
 }
+
 char Player::moveDown()
 {
-	if (m_posY < m_world.getSizeY()) {
-		this->move(m_posX, m_posY + 1);
-	}
-
+	move(m_posX, m_posY + 1);
 }
 char Player::moveRight()
 {
-	if (m_posX < m_world.getSizeX()) {
-		this->move(m_posX+1, m_posY);
-	}
-
+	move(m_posX+1, m_posY);
 }
 char Player::moveLeft()
 {
-	if (m_posX > 0) {
-		this->move(m_posX-1, m_posY);
-	}
+	move(m_posX -1, m_posY);
 
 }
