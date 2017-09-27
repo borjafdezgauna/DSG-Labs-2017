@@ -24,6 +24,9 @@ char Player::move(int destX, int destY)
 	m_world.clamp(destX, destY);
 	this->m_posX = destX;
 	this->m_posY = destY;
+	
+	return m_world.get(destX,destY);
+
 }
 
 char Player::moveUp()
