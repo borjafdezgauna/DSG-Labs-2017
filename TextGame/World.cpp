@@ -6,7 +6,7 @@
 #include <chrono>
 #include <thread>
 
-World::World(int sizeX, int sizeY, char defaultValue)
+World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
 {
 	m_sizeX = sizeX;
 	m_sizeY = sizeY;
@@ -16,6 +16,8 @@ World::World(int sizeX, int sizeY, char defaultValue)
 		m_pContent[i] = defaultValue;
 	}
 	m_defaultValue = defaultValue;
+	m_coinDefaultValue = coinDefaultValue;
+	addCoins(numCeldas-sizeX);
 	m_timer.start();
 }
 
@@ -42,6 +44,16 @@ int World::getSizeY() const
 	return m_sizeY;
 }
 
+void World::addCoins(int n)
+{
+	double pos=0;
+	for (int i = 0; i < 5; i++) {
+		pos = (double)rand() % RAND_MAX;
+		pos = pos * (m_sizeX*m_sizeY);
+		m_pContent[0] = m_coinDefaultValue;
+	}
+}
+
 char World::get(int x, int y) const
 {
 	int pos = getPosInArray(x, y);
@@ -56,13 +68,14 @@ void World::set(int x, int y, char value)
 
 void World::clamp(int& x, int& y) const
 {
-	if (x > m_sizeX) {
-		x = m_sizeX;
+	if (x >m_sizeX-1) {
+		x = m_sizeX-1;
 	}
 	else if (x < 0) {
 		x = 0;
-	}if (y > m_sizeY) {
-		y = m_sizeY;
+	}
+	if (y > m_sizeY-1) {
+		y = m_sizeY-1;
 	}
 	else if (y < 0) {
 		y = 0;
@@ -71,15 +84,18 @@ void World::clamp(int& x, int& y) const
 
 char World::move(int originX, int originY, int destX, int destY)
 {
-	char value= get(originX, originY);
-	set(destX, destY, value);
-	set(originX, originY, m_defaultValue);
+	char value= get(originX, originY);	
+	if (originX != destX || originY != destY) {
+		set(destX, destY, value);
+		set(originX, originY, m_defaultValue);
+	}
 	return value;
 }
 
 void World::draw()
 {
 	system("cls");
+	
 	for (int a = 0; a < m_sizeX + 2; a++) {
 		std::cout << "*";
 	}
