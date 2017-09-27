@@ -74,6 +74,7 @@ char World::move(int originX, int originY, int destX, int destY)
 
 void World::draw()
 {
+	system("cls");
 	for (int j = 0; j < m_sizeY; j++) {
 		for (int i = 0; i < m_sizeX; i++) {
 			std::cout << get(i, j);
