@@ -10,7 +10,7 @@
 
 int main()
 {
-	World ourWorld(8, 8, '.');
+	World ourWorld(20, 20, '.');
 	Player player(ourWorld, 2, 6, 'o');
 	GameLogic game(ourWorld, player);
 
