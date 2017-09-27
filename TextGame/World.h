@@ -11,7 +11,8 @@ class World
 	char m_coinDefaultValue;
 	//tamaño del mapa en x e y
 	int m_sizeX, m_sizeY;
-	int points;
+	
+	int numCeldas;
 	
 
 	int getPosInArray(int x, int y) const;
@@ -22,7 +23,8 @@ public:
 	World(int sizeX, int sizeY, char defaultValue = ' ', char coinDefaultValue = '?');
 	//liberar la memoria reservada en el constructor
 	~World();
-
+	int points;
+	int numCoins;
 	int getSizeX() const;
 	int getSizeY() const;
 

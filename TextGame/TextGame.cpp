@@ -21,12 +21,13 @@ void hideCursor()
 
 int main()
 {
-	World ourWorld(20, 20, '.');
-	Player player(ourWorld, 2, 6, 'o');
+	World ourWorld(5, 5, '.');
+	Player player(ourWorld, 1, 1, 'o');
 	GameLogic game(ourWorld, player);
 
 	hideCursor();
-
+	int seed = (time(NULL))%100;
+	srand(seed);
 	bool gameEnded = false;
 
 	while (!gameEnded)
