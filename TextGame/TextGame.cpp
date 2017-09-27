@@ -26,8 +26,7 @@ int main()
 	GameLogic game(ourWorld, player);
 
 	hideCursor();
-	int seed = (time(NULL))%100;
-	srand(seed);
+
 	bool gameEnded = false;
 
 	while (!gameEnded)
