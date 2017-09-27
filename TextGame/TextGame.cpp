@@ -7,12 +7,25 @@
 #include "World.h"
 #include "GameLogic.h"
 #include "Player.h"
+#include <windows.h>
+
+void hideCursor()
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = FALSE;
+	SetConsoleCursorInfo(consoleHandle, &info);
+}
+
 
 int main()
 {
 	World ourWorld(20, 20, '.');
 	Player player(ourWorld, 2, 6, 'o');
 	GameLogic game(ourWorld, player);
+
+	hideCursor();
 
 	bool gameEnded = false;
 
