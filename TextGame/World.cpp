@@ -202,7 +202,7 @@ bool World::move(int originX, int originY, int& destX, int& destY)
 	char originValue= get(originX, originY);	
 	char destValue = get(destX, destY);
 	
-	if ((originX != destX || originY != destY) && (destValue != playerDefaultValue1 && destValue != playerDefaultValue2)) {
+	if ((originX != destX || originY != destY) && (destValue != playerDefaultValue1 && destValue != playerDefaultValue2)&& (destValue != wallChar)) {
 			if (destValue == m_coinDefaultValue) {
 				if (originValue == playerDefaultValue1) {
 					points1 ++;
