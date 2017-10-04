@@ -10,7 +10,7 @@ Player::Player(World& world, int posX, int posY, char c)
 	m_posY = posY;
 
 	m_world.set(posX, posY, c);
-
+	
 
 }
 
@@ -23,7 +23,7 @@ char Player::move(int destX, int destY)
 {
 	m_world.clamp(destX, destY);
 	
-	m_world.move(m_posX,m_posY,destX,destY);
+	bool isMoney = m_world.move(m_posX,m_posY,destX,destY);
 	this->m_posX = destX;
 	this->m_posY = destY;
 	return m_world.get(destX,destY);

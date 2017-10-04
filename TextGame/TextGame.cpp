@@ -21,9 +21,10 @@ void hideCursor()
 
 int main()
 {
-	World ourWorld(15, 15, '.');
-	Player player(ourWorld, 1, 1, 'o');
-	GameLogic game(ourWorld, player);
+	World ourWorld(10, 10, '.');
+	Player player(ourWorld, 1, 1, ourWorld.getCharPlayer1());
+	Player player2(ourWorld, 2, 2, ourWorld.getCharPlayer2());
+	GameLogic game(ourWorld, player,player2);
 
 	hideCursor();
 
