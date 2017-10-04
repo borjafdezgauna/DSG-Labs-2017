@@ -5,6 +5,12 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <fstream>
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <istream>
+
 
 World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
 {
@@ -17,14 +23,49 @@ World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
 	numCeldas = sizeX*sizeY;
 	numCoins = numCeldas / 10;
 	m_pContent = new char[numCeldas];
+
 	for (int i = 0; i < numCeldas; i++) {
 		m_pContent[i] = defaultValue;
 	}
+
 	m_defaultValue = defaultValue;
 	m_coinDefaultValue = coinDefaultValue;
 	addCoins(numCoins);
 	m_timer.start();
 	points = 0;
+}
+
+World::World(std::string nameFile)
+{
+	std::ifstream file(nameFile);
+	char firstline[512];
+	int x, y;
+	char c;
+	char s;
+
+	while (file.good())
+	{
+		file.getline(firstline,512);
+		sscanf_s(firstline,  "%d,%d,%c,%c", &x, &y, &c, 1, &s, 1);
+	}
+	
+	m_sizeX = x;
+	m_sizeY = y;
+
+	m_defaultValue = c;
+	m_coinDefaultValue = s;
+
+	numCeldas = x*y;
+
+	numCoins = numCeldas / 10;
+	m_pContent = new char[numCeldas];
+
+	for (int i = 0; i < numCeldas; i++) {
+		m_pContent[i] = c;
+	}
+	addCoins(numCoins);
+	m_timer.start();
+	points = 0;	
 }
 
 World::~World()

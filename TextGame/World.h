@@ -1,5 +1,6 @@
 #pragma once
 #include "Timer.h"
+#include <string>
 
 class World
 {
@@ -21,6 +22,8 @@ class World
 
 public:
 	World(int sizeX, int sizeY, char defaultValue = ' ', char coinDefaultValue = '?');
+	World(std::string nameFile);
+
 	//liberar la memoria reservada en el constructor
 	~World();
 	int points;
