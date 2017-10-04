@@ -52,8 +52,8 @@ World::World(std::string nameFile)
 	file.getline(firstline,512);
 	sscanf_s(firstline,  "%d,%d,%c,%c,%c,%c,%c", &x, &y, &c, 1, &s, 1, &v, 1, &b, 1, &w, 1);
 
-	p1c = v;
-	p2c = b;
+	playerDefaultValue1 = v;
+	playerDefaultValue2= b;
 	wallChar = w;
 
 	m_defaultValue = c;
@@ -75,12 +75,12 @@ World::World(std::string nameFile)
 					nCoin++;
 				}
 				
-				if (m_pContent[i] == p1c) {
+				if (m_pContent[i] == playerDefaultValue1) {
 					p1x = n;
 					p1y = m;
 				}
 
-				if (m_pContent[i] == p2c) {
+				if (m_pContent[i] == playerDefaultValue2) {
 					p2x = n;
 					p2y = m;
 				}
@@ -115,9 +115,7 @@ int World::getP1Y() const {
 	return p1y;
 }
 
-char World::getP1C() const {
-	return p1c;
-}
+
 
 int World::getP2X() const {
 	return p2x;
@@ -127,9 +125,7 @@ int World::getP2Y() const {
 	return p2y;
 }
 
-char World::getP2C() const {
-	return p2c;
-}
+
 
 char World::getWallChar() const {
 	return wallChar;
@@ -217,8 +213,7 @@ bool World::move(int originX, int originY, int& destX, int& destY)
 					points2++;
 				}
 			}
-			set(destX, destY, originValue);
-			set(originX, originY, m_defaultValue);
+			set(destX, destY, originValue);			set(originX, originY, m_defaultValue);
 			
 		
 	}

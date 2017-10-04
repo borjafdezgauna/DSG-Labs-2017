@@ -18,7 +18,7 @@ class World
 	int numCeldas;
 
 	int p1x, p1y, p2x, p2y;
-	char p1c, p2c;
+	
 	
 	int getPosInArray(int x, int y) const;
 
@@ -42,11 +42,11 @@ public:
 	
 	int getP1X() const;
 	int getP1Y() const;
-	char getP1C() const;
+	
 
 	int getP2X() const;
 	int getP2Y() const;
-	char getP2C() const;
+	
 
 	//se asegura de que x e y están en rango
 	void clamp(int& x, int& y) const;
