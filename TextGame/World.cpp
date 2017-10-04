@@ -42,28 +42,51 @@ World::World(std::string nameFile)
 	int x, y;
 	char c;
 	char s;
+	int nCoin = 0;
 
-	while (file.good())
-	{
-		file.getline(firstline,512);
-		sscanf_s(firstline,  "%d,%d,%c,%c", &x, &y, &c, 1, &s, 1);
-	}
+	file.getline(firstline,512);
+	sscanf_s(firstline,  "%d,%d,%c,%c", &x, &y, &c, 1, &s, 1);
+
+	numCeldas = x*y;
+	m_pContent = new char[numCeldas];
 	
+	int i = 0;
+
+		for (int m = 0; m < x; m++) 
+		{
+			file.getline(firstline, 512);
+			for (int n = 0; n < y; n++)
+			{
+				m_pContent[i]= firstline[n];
+
+				if (m_pContent[i]=='?') {
+					nCoin++;
+				}
+				
+				if (m_pContent[i] == 'o') {
+					p1x = n;
+					p1y = m;
+					p1c = m_pContent[i];
+				}
+
+				if (m_pContent[i] == 'x') {
+					p2x = n;
+					p2y = m;
+					p2c = m_pContent[i];
+				}
+
+				i++;
+			}
+		}
+
 	m_sizeX = x;
 	m_sizeY = y;
 
 	m_defaultValue = c;
 	m_coinDefaultValue = s;
 
-	numCeldas = x*y;
-
-	numCoins = numCeldas / 10;
-	m_pContent = new char[numCeldas];
-
-	for (int i = 0; i < numCeldas; i++) {
-		m_pContent[i] = c;
-	}
-	addCoins(numCoins);
+	numCoins = nCoin;
+	
 	m_timer.start();
 	points = 0;	
 }
@@ -72,6 +95,31 @@ World::~World()
 {
 	delete[] m_pContent;
 }
+
+int World::getP1X() const{
+	return p1x;
+}
+
+int World::getP1Y() const {
+	return p1y;
+}
+
+char World::getP1C() const {
+	return p1c;
+}
+
+int World::getP2X() const {
+	return p2x;
+}
+
+int World::getP2Y() const {
+	return p2y;
+}
+
+char World::getP2C() const {
+	return p2c;
+}
+
 
 int World::getPosInArray(int x, int y) const
 {
