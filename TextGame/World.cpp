@@ -8,17 +8,23 @@
 
 World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
 {
+	//set the random seed
+	int seed = (time(NULL)) % 100;
+	srand(seed);
+
 	m_sizeX = sizeX;
 	m_sizeY = sizeY;
-	int numCeldas = sizeX*sizeY;
+	numCeldas = sizeX*sizeY;
+	numCoins = numCeldas / 10;
 	m_pContent = new char[numCeldas];
 	for (int i = 0; i < numCeldas; i++) {
 		m_pContent[i] = defaultValue;
 	}
 	m_defaultValue = defaultValue;
 	m_coinDefaultValue = coinDefaultValue;
-	addCoins(numCeldas/10);
+	addCoins(numCoins);
 	m_timer.start();
+	points = 0;
 }
 
 World::~World()
@@ -48,19 +54,18 @@ void World::addCoins(int n)
 {
 	double pos=0;
 
-	for (int i = 0; i < n; i++) {
-		pos =(double)rand() / RAND_MAX;
-		int posEntera = (int) (pos * (m_sizeX*m_sizeY));
+	for (int i = 0; i < n; i++)
+	{
+		int posEntera = rand() % (m_sizeX*m_sizeY);
 		if (m_pContent[posEntera] == m_defaultValue)
 		{
-		m_pContent[posEntera] = m_coinDefaultValue;
-
+			m_pContent[posEntera] = m_coinDefaultValue;
 		}
 		else
 		{
 			i--;
 		}
-		}
+	}
 }
 
 char World::get(int x, int y) const
@@ -93,36 +98,59 @@ void World::clamp(int& x, int& y) const
 
 char World::move(int originX, int originY, int destX, int destY)
 {
-	char value= get(originX, originY);	
+	
+
+	char originValue= get(originX, originY);	
+	char destValue = get(destX, destY);
+	
 	if (originX != destX || originY != destY) {
-		set(destX, destY, value);
+		if (destValue == m_coinDefaultValue) {
+			points=points+1;
+		}
+		
+		set(destX, destY, originValue);
 		set(originX, originY, m_defaultValue);
 	}
-	return value;
+	return originValue;
 }
 
 void World::draw()
 {
 	system("cls");
-	
-	for (int a = 0; a < m_sizeX + 2; a++) {
-		std::cout << "*";
-	}
-	std::cout << "\n";
-	for (int j = 0; j < m_sizeY; j++) {
-		std::cout << "*";
-		for (int i = 0; i < m_sizeX; i++) {
-			std::cout << get(i, j);
-		}
-		std::cout << "*\n";
-}
-	for (int b = 0; b < m_sizeX + 2; b++) {
-		std::cout << "*";
+	if (points == numCoins) {
+		double time = m_timer.getElapsedTime();
+		
+		std::cout << "\nEnhorabuena has ganado!!!!!!! \nTiempo final: " << time;
+		std::cout << "\nTotal monedas: " << points;
+		std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
 	}
-	std::cout << std::fixed;
-	std::cout.precision(2);
-	std::cout << "\nTime = " << m_timer.getElapsedTime() << " \n";
-	std::cout << "Points = " << 0;
-	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	else {
+
+		for (int a = 0; a < m_sizeX + 2; a++) {
+			std::cout << "*";
+		}
+		std::cout << "\n";
+		for (int j = 0; j < m_sizeY; j++) {
+			std::cout << "*";
+			for (int i = 0; i < m_sizeX; i++) {
+				std::cout << get(i, j);
+			}
+			std::cout << "*\n";
+		}
+		for (int b = 0; b < m_sizeX + 2; b++) {
+			std::cout << "*";
+
+		}
+
+		std::cout << std::fixed;
+		std::cout.precision(2);
+		std::cout << "\nTime = " << m_timer.getElapsedTime() << " \n";
+		std::cout << "Points = " << points;
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+
+	}
+
+
 }

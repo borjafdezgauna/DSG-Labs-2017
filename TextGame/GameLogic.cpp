@@ -19,8 +19,11 @@ GameLogic::~GameLogic()
 
 bool GameLogic::processInput()
 {
+	if (m_world.points == m_world.numCoins) {
+		return true;
+	}
 	if (!_kbhit()) return false;
-
+	
 	char c = _getch();
 	switch (c)
 	{

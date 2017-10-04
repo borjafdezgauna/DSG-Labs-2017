@@ -9,8 +9,17 @@
 #include "Player.h"
 #include <iostream>
 #include <fstream>
+#include <windows.h>
 
-#include <string>
+void hideCursor()
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = FALSE;
+	SetConsoleCursorInfo(consoleHandle, &info);
+}
+
 
 int main()
 {
@@ -39,6 +48,8 @@ int main()
 	World ourWorld(x, y, c[0]);
 	Player player(ourWorld, 2, 6, 'o');
 	GameLogic game(ourWorld, player);
+
+	hideCursor();
 
 	bool gameEnded = false;
 
