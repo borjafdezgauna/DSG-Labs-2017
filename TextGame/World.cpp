@@ -8,7 +8,10 @@
 
 World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
 {
-	
+	//set the random seed
+	int seed = (time(NULL)) % 100;
+	srand(seed);
+
 	m_sizeX = sizeX;
 	m_sizeY = sizeY;
 	numCeldas = sizeX*sizeY;
@@ -51,19 +54,18 @@ void World::addCoins(int n)
 {
 	double pos=0;
 
-	for (int i = 0; i < n; i++) {
-		pos =(double)rand() / RAND_MAX;
-		int posEntera = (int) (pos * (m_sizeX*m_sizeY));
+	for (int i = 0; i < n; i++)
+	{
+		int posEntera = rand() % (m_sizeX*m_sizeY);
 		if (m_pContent[posEntera] == m_defaultValue)
 		{
-		m_pContent[posEntera] = m_coinDefaultValue;
-
+			m_pContent[posEntera] = m_coinDefaultValue;
 		}
 		else
 		{
 			i--;
 		}
-		}
+	}
 }
 
 char World::get(int x, int y) const
