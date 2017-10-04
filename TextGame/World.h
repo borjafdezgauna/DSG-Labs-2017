@@ -12,6 +12,8 @@ class World
 	char m_coinDefaultValue;
 	//tamaño del mapa en x e y
 	int m_sizeX, m_sizeY;
+
+	char wallChar;
 	
 	int numCeldas;
 
@@ -32,6 +34,7 @@ public:
 	int points1;
 	char playerDefaultValue1;
 	char playerDefaultValue2;
+	char getWallChar() const;
 	int points2;
 	int numCoins;
 	int getSizeX() const;

@@ -45,15 +45,16 @@ World::World(std::string nameFile)
 	std::ifstream file(nameFile);
 	char firstline[512];
 	int x, y;
-	char c, s, v, b;
+	char c, s, v, b, w;
 
 	int nCoin = 0;
 
 	file.getline(firstline,512);
-	sscanf_s(firstline,  "%d,%d,%c,%c,%c,%c", &x, &y, &c, 1, &s, 1, &v, 1, &b, 1);
+	sscanf_s(firstline,  "%d,%d,%c,%c,%c,%c,%c", &x, &y, &c, 1, &s, 1, &v, 1, &b, 1, &w, 1);
 
 	p1c = v;
 	p2c = b;
+	wallChar = w;
 
 	m_defaultValue = c;
 	m_coinDefaultValue = s;
@@ -83,6 +84,7 @@ World::World(std::string nameFile)
 					p2x = n;
 					p2y = m;
 				}
+
 
 				i++;
 			}
@@ -127,6 +129,10 @@ int World::getP2Y() const {
 
 char World::getP2C() const {
 	return p2c;
+}
+
+char World::getWallChar() const {
+	return wallChar;
 }
 
 
