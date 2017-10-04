@@ -45,12 +45,18 @@ World::World(std::string nameFile)
 	std::ifstream file(nameFile);
 	char firstline[512];
 	int x, y;
-	char c;
-	char s;
+	char c, s, v, b;
+
 	int nCoin = 0;
 
 	file.getline(firstline,512);
-	sscanf_s(firstline,  "%d,%d,%c,%c", &x, &y, &c, 1, &s, 1);
+	sscanf_s(firstline,  "%d,%d,%c,%c,%c,%c", &x, &y, &c, 1, &s, 1, &v, 1, &b, 1);
+
+	p1c = v;
+	p2c = b;
+
+	m_defaultValue = c;
+	m_coinDefaultValue = s;
 
 	numCeldas = x*y;
 	m_pContent = new char[numCeldas];
@@ -64,20 +70,18 @@ World::World(std::string nameFile)
 			{
 				m_pContent[i]= firstline[n];
 
-				if (m_pContent[i]=='?') {
+				if (m_pContent[i]==m_coinDefaultValue) {
 					nCoin++;
 				}
 				
-				if (m_pContent[i] == 'o') {
+				if (m_pContent[i] == p1c) {
 					p1x = n;
 					p1y = m;
-					p1c = m_pContent[i];
 				}
 
-				if (m_pContent[i] == 'x') {
+				if (m_pContent[i] == p2c) {
 					p2x = n;
 					p2y = m;
-					p2c = m_pContent[i];
 				}
 
 				i++;
@@ -87,8 +91,7 @@ World::World(std::string nameFile)
 	m_sizeX = x;
 	m_sizeY = y;
 
-	m_defaultValue = c;
-	m_coinDefaultValue = s;
+
 
 	numCoins = nCoin;
 	
