@@ -23,9 +23,9 @@ void hideCursor()
 
 int main()
 {
-	World ourWorld(10, 10, '.');
-	Player player(ourWorld, 1, 1, ourWorld.getCharPlayer1());
-	Player player2(ourWorld, 2, 2, ourWorld.getCharPlayer2());
+	World ourWorld("file.csv");
+	Player player(ourWorld, ourWorld.getP1X(), ourWorld.getP1Y(), ourWorld.getP1C());
+	Player player2(ourWorld, ourWorld.getP2X(), ourWorld.getP2Y(), ourWorld.getP2C());
 	GameLogic game(ourWorld, player,player2);
 
 	hideCursor();
