@@ -21,7 +21,7 @@ void hideCursor()
 
 int main()
 {
-	World ourWorld(5, 5, '.');
+	World ourWorld(15, 15, '.');
 	Player player(ourWorld, 1, 1, 'o');
 	GameLogic game(ourWorld, player);
 
