@@ -23,33 +23,35 @@ bool GameLogic::processInput()
 		return true;
 	}
 	if (!_kbhit()) return false;
-	
-	char c = _getch();
-	switch (c)
+	while (_kbhit())
 	{
-	
-	case '8':
-		m_player2.moveUp(); break;
-	case '2':
-		m_player2.moveDown(); break;
-	case '6':
-		m_player2.moveRight(); break;
-	case '4':
-		m_player2.moveLeft(); break;
-	case 'w':
-	case 'W':
-		m_player.moveUp(); break;
-	case 's':
-	case 'S':
-		m_player.moveDown(); break;
-	case 'd':
-	case 'D':
-		m_player.moveRight(); break;
-	case 'a':
-	case 'A':
-		m_player.moveLeft(); break;
-	case 27:
-		return true;
+		char c = _getch();
+		switch (c)
+		{
+
+		case '8':
+			m_player2.moveUp(); break;
+		case '2':
+			m_player2.moveDown(); break;
+		case '6':
+			m_player2.moveRight(); break;
+		case '4':
+			m_player2.moveLeft(); break;
+		case 'w':
+		case 'W':
+			m_player.moveUp(); break;
+		case 's':
+		case 'S':
+			m_player.moveDown(); break;
+		case 'd':
+		case 'D':
+			m_player.moveRight(); break;
+		case 'a':
+		case 'A':
+			m_player.moveLeft(); break;
+		case 27:
+			return true;
+		}
 	}
 	return false;
 }
