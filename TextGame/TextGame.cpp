@@ -7,6 +7,8 @@
 #include "World.h"
 #include "GameLogic.h"
 #include "Player.h"
+#include <iostream>
+#include <fstream>
 #include <windows.h>
 
 void hideCursor()
