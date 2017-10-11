@@ -5,8 +5,14 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <fstream>
 
-World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
+#include "stdafx.h"
+#include <stdio.h>
+#include <istream>
+
+
+World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue, char player1DefaultValue, char player2DefaultValue)
 {
 	//set the random seed
 	int seed = (time(NULL)) % 100;
@@ -17,20 +23,114 @@ World::World(int sizeX, int sizeY, char defaultValue, char coinDefaultValue)
 	numCeldas = sizeX*sizeY;
 	numCoins = numCeldas / 10;
 	m_pContent = new char[numCeldas];
+
 	for (int i = 0; i < numCeldas; i++) {
 		m_pContent[i] = defaultValue;
 	}
+
 	m_defaultValue = defaultValue;
 	m_coinDefaultValue = coinDefaultValue;
+	playerDefaultValue1 = player1DefaultValue;
+	playerDefaultValue2 = player2DefaultValue;
+
 	addCoins(numCoins);
 	m_timer.start();
-	points = 0;
+	points1 = 0;
+	points2 = 0;
+	
+}
+
+World::World(std::string nameFile)
+{
+	std::ifstream file(nameFile);
+	char firstline[512];
+	int x, y;
+	char c, s, v, b, w;
+
+	int nCoin = 0;
+
+	file.getline(firstline,512);
+	sscanf_s(firstline,  "%d,%d,%c,%c,%c,%c,%c", &x, &y, &c, 1, &s, 1, &v, 1, &b, 1, &w, 1);
+
+	playerDefaultValue1 = v;
+	playerDefaultValue2= b;
+	wallChar = w;
+
+	m_defaultValue = c;
+	m_coinDefaultValue = s;
+
+	numCeldas = x*y;
+	m_pContent = new char[numCeldas];
+	
+	int i = 0;
+
+		for (int m = 0; m < x; m++) 
+		{
+			file.getline(firstline, 512);
+			for (int n = 0; n < y; n++)
+			{
+				m_pContent[i]= firstline[n];
+
+				if (m_pContent[i]==m_coinDefaultValue) {
+					nCoin++;
+				}
+				
+				if (m_pContent[i] == playerDefaultValue1) {
+					p1x = n;
+					p1y = m;
+				}
+
+				if (m_pContent[i] == playerDefaultValue2) {
+					p2x = n;
+					p2y = m;
+				}
+
+
+				i++;
+			}
+		}
+
+	m_sizeX = x;
+	m_sizeY = y;
+
+
+
+	numCoins = nCoin;
+	
+	m_timer.start();
+	points1 = 0;	
+	points2 = 0;
 }
 
 World::~World()
 {
 	delete[] m_pContent;
 }
+
+int World::getP1X() const{
+	return p1x;
+}
+
+int World::getP1Y() const {
+	return p1y;
+}
+
+
+
+int World::getP2X() const {
+	return p2x;
+}
+
+int World::getP2Y() const {
+	return p2y;
+}
+
+
+
+char World::getWallChar() const {
+	return wallChar;
+}
+
 
 int World::getPosInArray(int x, int y) const
 {
@@ -76,8 +176,9 @@ char World::get(int x, int y) const
 
 void World::set(int x, int y, char value)
 {
-	int pos = getPosInArray(x, y);
-	m_pContent[pos] = value;
+		int pos = getPosInArray(x, y);
+		m_pContent[pos] = value;
+	
 }
 
 void World::clamp(int& x, int& y) const
@@ -96,34 +197,59 @@ void World::clamp(int& x, int& y) const
 	}
 }
 
-char World::move(int originX, int originY, int destX, int destY)
+bool World::move(int originX, int originY, int& destX, int& destY)
 {
 	
-
+	bool isMoney = false;
 	char originValue= get(originX, originY);	
 	char destValue = get(destX, destY);
 	
-	if (originX != destX || originY != destY) {
-		if (destValue == m_coinDefaultValue) {
-			points=points+1;
-		}
+	if ((originX != destX || originY != destY) && (destValue != playerDefaultValue1 && destValue != playerDefaultValue2)&& (destValue != wallChar)) {
+			if (destValue == m_coinDefaultValue) {
+				if (originValue == playerDefaultValue1) {
+					points1 ++;
+				}
+				else if (originValue == playerDefaultValue2) {
+					points2++;
+				}
+			}
+			set(destX, destY, originValue);			set(originX, originY, m_defaultValue);
+			
 		
-		set(destX, destY, originValue);
-		set(originX, originY, m_defaultValue);
 	}
-	return originValue;
+	else {
+		destX = originX;
+		destY = originY;
+	}
+
+	return isMoney;;
 }
 
 void World::draw()
 {
 	system("cls");
-	if (points == numCoins) {
+	if (points1 + points2 == numCoins) {
 		double time = m_timer.getElapsedTime();
-		
-		std::cout << "\nEnhorabuena has ganado!!!!!!! \nTiempo final: " << time;
-		std::cout << "\nTotal monedas: " << points;
-		std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-
+		int aux;
+		if (points1 < points2) {
+			aux = 2;
+		}
+		else if(points1> points2){
+			aux = 1;
+		}
+		else {
+			aux = 0;
+		}
+		if (aux == 0) {
+			std::cout << "\nEmpate!!!!!! \nTiempo final: " << time;
+			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+		}
+		else {
+			std::cout << "\nEnhorabuena ha ganado el Player " << aux << "!!!!!!! \nTiempo final: " << time;
+			std::cout << "\nTotal monedas Player1: " << points1;
+			std::cout << "\nTotal monedas Player2: " << points2;
+			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+		}
 	}
 	else {
 
@@ -146,11 +272,25 @@ void World::draw()
 		std::cout << std::fixed;
 		std::cout.precision(2);
 		std::cout << "\nTime = " << m_timer.getElapsedTime() << " \n";
-		std::cout << "Points = " << points;
+		std::cout << "Points Player1 = " << points1;
+		std::cout << "\nPoints Player2 = " << points2;
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 
 	}
 
 
+}
+
+char World::getCharPlayer1() const
+	{
+		return playerDefaultValue1;
+	}
+char World::getCharPlayer2() const
+{
+	return playerDefaultValue2;
+}
+char World::getCharDefault() const
+{
+	return m_defaultValue;
 }
