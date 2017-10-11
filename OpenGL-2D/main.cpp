@@ -16,12 +16,15 @@ int main(int argc, char** argv)
 
 
 	//init objects
-	Quad a;
-	Quad rect1;
+	Quad rect1 ("Q_Rect1");
 	rect1.setColor(255, 0, 0);
+	rect1.setPosition(-0.5,-0.5,-2);
+	rect1.setRotation(45, 0, 0, 1);
 	renderer.addObject(&rect1);
-	Quad rect2;
+
+	Quad rect2 ("Q_Rect2");
 	rect2.setColor(0, 255, 0);
+	rect2.setPosition(0.5, 0.5, -2);
 	renderer.addObject(&rect2);
 
 

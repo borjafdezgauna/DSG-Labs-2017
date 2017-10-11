@@ -2,6 +2,7 @@
 
 class GraphicObject2D;
 #include <vector>
+#include <string>
 using namespace std;
 
 class Renderer
@@ -20,6 +21,8 @@ public:
 
 	void drawScene();
 	void addObject(GraphicObject2D* pObj);
+	GraphicObject2D* Renderer::getObjectByName(string objectName);
+
 	void reshapeWindow(int x, int y);
 
 	static void __drawScene();

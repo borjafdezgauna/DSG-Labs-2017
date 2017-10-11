@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Renderer;
 
@@ -7,6 +8,7 @@ class InputHandler
 	static InputHandler* m_pInputHandler;
 	Renderer& m_renderer;
 public:
+	std::string objectListening = "";
 	InputHandler(Renderer& renderer);
 	~InputHandler();
 

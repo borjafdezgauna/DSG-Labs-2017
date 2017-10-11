@@ -13,7 +13,7 @@ Renderer::Renderer()
 
 Renderer::~Renderer()
 {
-}
+} 
 
 void Renderer::initialize(int argc, char** argv)
 {
@@ -22,7 +22,7 @@ void Renderer::initialize(int argc, char** argv)
 	//init window and OpenGL context
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(1024, 768);
+	glutInitWindowSize(1024, 1024);
 	glutCreateWindow(argv[0]);
 	//glutFullScreen();
 
@@ -57,6 +57,18 @@ void Renderer::addObject(GraphicObject2D* pObj)
 {
 	m_objects2D.push_back(pObj);
 }
+
+GraphicObject2D* Renderer::getObjectByName(string objectName)
+{
+	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
+	{
+		if ((*it)->m_name == objectName)
+		{
+			return *it;
+		}
+	}
+}
+
 
 void Renderer::drawScene()
 {
