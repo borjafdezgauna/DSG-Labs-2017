@@ -18,7 +18,7 @@ void MovingQuad::draw()
 {	
 
 	m_position_X += m_position_X*m_dir_X;
-	m_position_Y += m_position_X*m_dir_Y;
+	m_position_Y += m_position_Y*m_dir_Y;
 
 	Quad::draw();
 }
