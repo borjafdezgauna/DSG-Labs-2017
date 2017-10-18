@@ -22,7 +22,10 @@ public:
 	void addObject(GraphicObject2D* pObj);
 	void reshapeWindow(int x, int y);
 
+	GraphicObject2D* getObjectByName(std::string name);
+
 	static void __drawScene();
 	static void __reshapeWindow(int x, int y);
+
 };
 
