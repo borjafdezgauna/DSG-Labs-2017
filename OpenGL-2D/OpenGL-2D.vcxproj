@@ -54,6 +54,8 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GraphicObject2D.cpp" />
+    <ClCompile Include="MovingQuad.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -61,6 +63,7 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MovingQuad.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="GraphicObject2D.h" />
     <ClInclude Include="InputHandler.h" />

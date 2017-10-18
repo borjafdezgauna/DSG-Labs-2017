@@ -24,5 +24,6 @@ public:
 
 	static void __drawScene();
 	static void __reshapeWindow(int x, int y);
+	GraphicObject2D* Renderer::getObjetcByName(string name);
 };
 
