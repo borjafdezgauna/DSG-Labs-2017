@@ -1,13 +1,23 @@
 #include "stdafx.h"
 #include "Quad.h"
+#include "Renderer.h"
+#include "MovingQuad.h"
+#include "../3rd-party/SOIL/src/SOIL.h"
 
 
 
 
 
-Quad::Quad(std::string name)
+Quad::Quad(std::string name, char* textureName)
 {
 	m_name = name;
+
+	m_myTextureId = SOIL_load_OGL_texture(textureName, 0, 0, 0);
+
+
+
+	
+
 }
 
 
@@ -59,27 +69,54 @@ void GraphicObject2D::setScale(double x, double y, double z)
 	m_scale_Z = z;
 }
 
+void GraphicObject2D::shoot()
+{
+	MovingQuad *mov_rect2 = new MovingQuad("Q_Rect2", "../OpenGL-2D/img/bullet.png");
+	mov_rect2->setdirX(0.005);
+	mov_rect2->setScale(1, 0.5, 1);
+	mov_rect2->setColor(0, 255, 0);
+	mov_rect2->setPosition(m_position_X, m_position_Y, m_position_Z);
+	Renderer::getRendererInstance()->addObject(mov_rect2);
+	
+}
+
 void Quad::draw()
 {
-	//TODO:
 
-	//1. Set the color
-	glColor3f(m_r, m_g, m_b);
+	//glColor3f(m_r, m_g, m_b);
 
-	//2. Draw the cube
 	glPushMatrix();
 
 	glTranslatef(m_position_X, m_position_Y, m_position_Z);
 	glRotatef(m_angles,m_rotation_X, m_rotation_Y, m_rotation_Z);
+	glScalef(m_scale_X, m_scale_Y, m_scale_Z);
 
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0);
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, m_myTextureId);
+
+	glTexEnvf(GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	
 	glBegin(GL_QUADS);
-	glVertex3f(-0.1, -0.1, -2);
-	glVertex3f(0.1, -0.1, -2);
-	glVertex3f(0.1, 0.1, -2);
-	glVertex3f(-0.1, 0.1, -2);
-	glEnd();
 
+
+	glTexCoord2f(1.0, 0.0);
+	glVertex2f(-0.1, -0.1);
+	glTexCoord2f(1.0, 1.0);
+	glVertex2f(0.1, -0.1);
+	glTexCoord2f(0.0, 1.0);
+	glVertex2f(0.1, 0.1);
+	glTexCoord2f(0.0, 0.0);
+	glVertex2f(-0.1, 0.1);
+
+	glEnd();
+	glDisable(GL_ALPHA_TEST);
 	glPopMatrix();
+
+
+
 
 	
 

@@ -16,7 +16,7 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-
+	static Renderer* getRendererInstance();
 	void initialize(int argc, char** argv);
 
 	void drawScene();

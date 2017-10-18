@@ -37,6 +37,11 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 		break;
 		
 		//TODO
+	case 'b':
+	case 'B':
+		m_renderer.getObjectByName(objectListening)->shoot();
+		break;
+
 	case 'q':
 	case 'Q':
 		m_renderer.getObjectByName(objectListening)->rotateAmount(10, 0, 0, 1);

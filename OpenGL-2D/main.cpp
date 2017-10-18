@@ -2,6 +2,7 @@
 #include "InputHandler.h"
 #include "Renderer.h"
 #include "Quad.h"
+#include "MovingQuad.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 
@@ -16,16 +17,14 @@ int main(int argc, char** argv)
 
 
 	//init objects
-	Quad rect1 ("Q_Rect1");
+	Quad rect1 ("Q_Rect1", "../OpenGL-2D/img/fighter-01.png");
 	rect1.setColor(255, 0, 0);
+	rect1.setScale(1, 1, 1);
 	rect1.setPosition(-0.5,-0.5,-2);
-	rect1.setRotation(45, 0, 0, 1);
+	rect1.setRotation(180, 0, 0, 1);
 	renderer.addObject(&rect1);
 
-	Quad rect2 ("Q_Rect2");
-	rect2.setColor(0, 255, 0);
-	rect2.setPosition(0.5, 0.5, -2);
-	renderer.addObject(&rect2);
+	
 
 
 	while (1)

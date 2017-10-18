@@ -24,6 +24,7 @@ protected:
 
 
 public:
+	unsigned int m_myTextureId;
 	std::string m_name = "";
 	virtual void draw() = 0;
 	void setColor(float r, float g, float b);
@@ -32,4 +33,5 @@ public:
 	void rotateAmount(double angles, double x, double y, double z);
 	void setRotation(double angles, double x, double y, double z);
 	void setScale(double x, double y, double z);
+	void shoot();
 };

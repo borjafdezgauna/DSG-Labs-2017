@@ -15,6 +15,12 @@ Renderer::~Renderer()
 {
 } 
 
+Renderer* Renderer::getRendererInstance()
+{
+	return m_pRenderer;
+}
+
+
 void Renderer::initialize(int argc, char** argv)
 {
 	//INIT GLUT/////////////////////
