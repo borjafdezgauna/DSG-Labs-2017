@@ -72,6 +72,17 @@ void Renderer::drawScene()
 	}
 }
 
+GraphicObject2D* Renderer::getObjectByName(std::string pName)
+{
+
+	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
+	{
+		if ((*it)->getName() == pName)
+			return *it;
+
+	}
+}
+
 
 //Nevermind these static functions: auxiliary stuff to fit openGL's callbacks
 void Renderer::__drawScene()
