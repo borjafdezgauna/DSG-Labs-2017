@@ -24,7 +24,13 @@ void Sphere::setColor(float r, float g, float b)
 void Sphere::draw()
 {
 	glDisable(GL_TEXTURE);
-	glColor3f(m_r, m_g, m_b);
+	GLfloat mat_specular[] = { 1.0,1.0,1.0,1.0 }; 
+	GLfloat low_shininess[] = { 5.0 }; 
+	GLfloat diffuse[] = {m_r,m_g,m_b};
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular); 
+	glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+
 
 	int i, j;
 	for (i = 0; i <= m_lat; i++)
