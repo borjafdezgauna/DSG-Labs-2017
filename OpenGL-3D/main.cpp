@@ -18,12 +18,15 @@ int main(int argc, char** argv)
 	//init objects
 	Sphere sphere1;
 	sphere1.setColor(255, 0, 0);
-	renderer.addObject(&sphere1);
-	sphere1.setPosition(0, 0, 4);
+	
+	sphere1.setPosition(0, 0, 3);
 	Sphere sphere2;
 	sphere2.setColor(0, 255, 0);
-	renderer.addObject(&sphere2);
 	sphere2.setPosition(0, 0, 1);
+
+	renderer.addObject(&sphere2);
+	renderer.addObject(&sphere1);
+
 	Camera camera;
 	camera.setPosition(0, 0, 5);
 	renderer.addCamera(&camera);

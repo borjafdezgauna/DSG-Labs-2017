@@ -2,6 +2,7 @@
 #include "InputHandler.h"
 #include "Renderer.h"
 #include "Camera.h"
+#include "GraphicObject3D.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
@@ -28,10 +29,19 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 		//TODO
-	case '8': break;
-	case '2': break;
-	case '6': break;
-	case '4': break;
+	case 'a': 
+		m_renderer.getActiveCamera()->addPositionOffset(0.5, 0, 0);
+		break;
+		
+	case 'd': 
+		m_renderer.getActiveCamera()->addPositionOffset(-0.5, 0, 0);
+		break;
+	case 'w': 
+		m_renderer.getActiveCamera()->addPositionOffset(0, 0.5, 0);
+		break;
+	case 's': 
+		m_renderer.getActiveCamera()->addPositionOffset(0, -0.5, 0);
+		break;
 	case 27: exit(0);
 	}
 }

@@ -31,6 +31,23 @@ void Renderer::initialize(int argc, char** argv)
 	//callback functions
 	glutDisplayFunc(__drawScene);
 	glutReshapeFunc(__reshapeWindow);
+
+
+	glEnable(GL_DEPTH_TEST);
+
+
+	GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 }
 
 
@@ -62,7 +79,9 @@ Camera* Renderer::getActiveCamera()
 void Renderer::drawScene()
 {
 	//clean the backbuffer
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	
 
 	//set the 2d modelview matrix
 	if (m_pActiveCamera!=nullptr)
