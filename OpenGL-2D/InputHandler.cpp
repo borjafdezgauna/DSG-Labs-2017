@@ -71,7 +71,7 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 
 
 	case '1':  pObj = m_renderer.getObjectByName("quad1");
-		 pX = pObj->getX();
+		pX = pObj->getX();
 		 pY = pObj->getY();
 		 pZ = pObj->getY();	
 		 rot =pObj->getRotation();
