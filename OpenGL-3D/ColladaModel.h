@@ -2,6 +2,7 @@
 #include "GraphicObject3D.h"
 #include <vector>
 #include "../3rd-party/tinyxml2/tinyxml2.h"
+#include "../3rd-party/SOIL/src/SOIL.h"
 
 
 class ColladaModel : public GraphicObject3D
@@ -16,7 +17,8 @@ public:
 	~ColladaModel();
 
 	void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, std::vector<double> &vector);
-	void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, std::vector<int> &vector)
-		;
+	void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, std::vector<int> &vector);
+
+	void ColladaModel::draw();
 };
 

@@ -9,7 +9,10 @@ ColladaModel::ColladaModel(const char *filename)
 	
 	tinyxml2::XMLElement* pRoot = doc.FirstChildElement("COLLADA");
 	tinyxml2::XMLElement* init_from = pRoot->FirstChildElement("library_images") -> FirstChildElement("image") -> FirstChildElement("init_from");
+	
 	const char* textura = init_from->GetText();
+
+	textureId = SOIL_load_OGL_texture(&textura[8], 0, 0, 0);
 
 
 
@@ -40,5 +43,9 @@ void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, std::vect
 	}
 }
 ColladaModel::~ColladaModel()
+{
+}
+
+void ColladaModel::draw() 
 {
 }

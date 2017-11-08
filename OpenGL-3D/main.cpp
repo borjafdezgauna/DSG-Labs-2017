@@ -5,6 +5,7 @@
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "Camera.h"
 
+#include "ColladaModel.h"
 
 int main(int argc, char** argv)
 {
@@ -26,6 +27,8 @@ int main(int argc, char** argv)
 	Camera camera;
 	camera.setPosition(0, 0, 5);
 	renderer.addCamera(&camera);
+
+	ColladaModel collada = new Collada("");
 
 
 	while (1)
