@@ -10,6 +10,7 @@ class ColladaModel : public GraphicObject3D
 	std::vector<double> m_positions;
 	std::vector<double> m_normals;
 	std::vector<double> m_texCoords;
+	std::vector<int> m_triangles;
 	int textureId;
 
 public:
