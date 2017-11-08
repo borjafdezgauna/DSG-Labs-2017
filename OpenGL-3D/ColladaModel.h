@@ -2,8 +2,7 @@
 
 #include "GraphicObject3D.h"
 #include <vector>
-#include "tinyxml2/tinyxml2.h"
-#include "Debug/tinyxml2.lib"
+#include "../3rd-party/tinyxml2/tinyxml2.h"
 
 class ColladaModel : public GraphicObject3D
 {
@@ -15,5 +14,9 @@ class ColladaModel : public GraphicObject3D
 public:
 	ColladaModel();
 	~ColladaModel();
+
+
+	void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, std::vector<double> & vector);
+	void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, std::vector<int> &vector);
 };
 
