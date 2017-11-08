@@ -23,7 +23,7 @@ void Camera::applyMatrix()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//3. Apply the camera's own transformation: translation/rotation
+	//3. Apply the camera's own transformation:translation/rotation
 	glRotatef(-m_roll, 0.0, 0.0, 1.0);
 	glRotatef(-m_yaw, 0.0, 1.0, 0.0);
 	glRotatef(-m_pitch, 1.0, 0.0, 0.0);
