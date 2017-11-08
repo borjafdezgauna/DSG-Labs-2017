@@ -6,7 +6,7 @@
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
 
-InputHandler::InputHandler(Renderer& renderer): m_renderer(renderer)
+InputHandler::InputHandler(Renderer& renderer) : m_renderer(renderer)
 {
 	m_pInputHandler = this;
 }
