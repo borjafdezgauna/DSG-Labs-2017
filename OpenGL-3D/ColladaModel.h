@@ -4,7 +4,7 @@
 #include "../3rd-party/tinyxml2/tinyxml2.h"
 
 
-class ColladaModel: public GraphicObject3D
+class ColladaModel : public GraphicObject3D
 {
 	std::vector<double> m_positions;
 	std::vector<double> m_normals;
@@ -12,7 +12,11 @@ class ColladaModel: public GraphicObject3D
 	int textureId;
 
 public:
-	ColladaModel();
+	ColladaModel(const char *filename);
 	~ColladaModel();
+
+	void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, std::vector<double> &vector);
+	void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, std::vector<int> &vector)
+		;
 };
 
