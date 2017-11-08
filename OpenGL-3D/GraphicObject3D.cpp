@@ -10,7 +10,10 @@ void GraphicObject3D::setPosition(double x, double y, double z)
 
 void GraphicObject3D::addPositionOffset(double x, double y, double z)
 {
-	//TODO
+	//En vez de sobreescribir, incrementar
+	m_x += x;
+	m_y += y;
+	m_z += z;
 }
 
 void GraphicObject3D::setRotation(double yaw, double pitch, double roll)
@@ -31,4 +34,7 @@ void GraphicObject3D::applyMatrix()
 {
 	//TODO
 	//apply the transformation matrix of the object
+	glMatrixMode(GL_MODELVIEW);
+	glTranslatef(m_x, m_y, m_z);
+	
 }

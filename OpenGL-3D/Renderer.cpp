@@ -22,7 +22,8 @@ void Renderer::initialize(int argc, char** argv)
 	////////////////////////////////
 	//init window and OpenGL context
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+
+	glutInitDisplayMode(GLUT_DOUBLE |GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(1024, 768);
 	glutCreateWindow(argv[0]);
 	//glutFullScreen();
@@ -31,6 +32,7 @@ void Renderer::initialize(int argc, char** argv)
 	//callback functions
 	glutDisplayFunc(__drawScene);
 	glutReshapeFunc(__reshapeWindow);
+	glEnable(GL_DEPTH_TEST);
 }
 
 
@@ -62,7 +64,8 @@ Camera* Renderer::getActiveCamera()
 void Renderer::drawScene()
 {
 	//clean the backbuffer
-	glClear(GL_COLOR_BUFFER_BIT);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//set the 2d modelview matrix
 	if (m_pActiveCamera!=nullptr)
