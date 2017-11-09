@@ -17,17 +17,17 @@ int main(int argc, char** argv)
 
 
 	//init objects
-	/*Sphere sphere1;
+	Sphere sphere1;
 	sphere1.setColor(255, 0, 0);
 	renderer.addObject(&sphere1);
-	sphere1.setPosition(0, 0, -5);*/
+	sphere1.setPosition(0, 0, -5);
 
-	/*Sphere sphere2;
+	Sphere sphere2;
 	sphere2.setColor(0, 255, 0);
-	renderer.addObject(&sphere2);*/
+	renderer.addObject(&sphere2);
 
-	/*ColladaModel collada = ColladaModel("Venom.dae");
-	renderer.addObject(&collada);*/
+	ColladaModel collada = ColladaModel("Venom.dae");
+	renderer.addObject(&collada);
 
 	ColladaModel collada2 = ColladaModel("EM208_heavy.dae");
 	renderer.addObject(&collada2);
