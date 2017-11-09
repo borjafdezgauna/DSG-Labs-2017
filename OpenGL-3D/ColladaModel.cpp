@@ -26,7 +26,7 @@ ColladaModel::ColladaModel(const char *filename)
 
 
 	tinyxml2::XMLElement* source3 = source2->NextSiblingElement("source");
-	tinyxml2::XMLElement* float_array3 = source2->FirstChildElement("float_array");
+	tinyxml2::XMLElement* float_array3 = source3->FirstChildElement("float_array");
 	parseXMLFloatArray(float_array3, m_texCoords);
 
 	tinyxml2::XMLElement* triangles = mesh->FirstChildElement("triangles");
@@ -36,6 +36,8 @@ ColladaModel::ColladaModel(const char *filename)
 	m_pitch = 270;
 
 }
+
+
 
 void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, std::vector<double> &vector)
 {

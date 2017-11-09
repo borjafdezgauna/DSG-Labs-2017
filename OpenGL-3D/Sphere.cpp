@@ -28,14 +28,21 @@ void Sphere::draw()
 	glEnable(GL_LIGHT0);
 
 	
-	GLfloat mat_diffuse[] = { m_r,m_g,m_b, 1.0 };
+	//GLfloat mat_diffuse[] = { m_r,m_g,m_b, 1.0 };
 
-	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 0 };
+	//GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 0 };
+	//GLfloat low_shininess[] = { 5.0 };
+
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	//glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+	//glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mat_diffuse);
+
+	GLfloat mat_specular[] = { 1.0,1.0,1.0,1.0 };
 	GLfloat low_shininess[] = { 5.0 };
-
+	GLfloat diffuse[] = { m_r,m_g,m_b };
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
-	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 
 
 	glColor3f(m_r, m_g, m_b);
