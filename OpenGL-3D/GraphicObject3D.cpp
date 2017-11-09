@@ -36,5 +36,6 @@ void GraphicObject3D::applyMatrix()
 	//apply the transformation matrix of the object
 	glMatrixMode(GL_MODELVIEW);
 	glTranslatef(m_x, m_y, m_z);
+	glRotatef(m_pitch, 1,0,0);
 	
 }

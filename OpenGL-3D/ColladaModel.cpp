@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ColladaModel.h"
+#include "../3rd-party/SOIL/src/SOIL.h"
 
 
 
@@ -32,6 +33,7 @@ ColladaModel::ColladaModel(const char *filename)
 	tinyxml2::XMLElement* input = triangles ->FirstChildElement("p");
 	parseXMLIntArray(input, m_triangles);
 
+	m_pitch = 270;
 
 }
 
@@ -68,8 +70,7 @@ void ColladaModel::draw()
 	glBindTexture(GL_TEXTURE_2D, textureId);
 	glBegin(GL_TRIANGLES);
 	int n = m_triangles.size();
-	for (int i = 0; i > n;i++) {
-
+	for (int i = 0; i < n;i++) {
 
 		int offset2 = m_triangles[i]*2;
 		int offset3 = m_triangles[i]*3;
