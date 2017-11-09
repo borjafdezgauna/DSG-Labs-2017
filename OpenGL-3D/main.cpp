@@ -24,14 +24,15 @@ int main(int argc, char** argv)
 
 	Sphere sphere2;
 	sphere2.setColor(0, 255, 0);
-	//renderer.addObject(&sphere2);
+	renderer.addObject(&sphere2);
+
+	ColladaModel collada = ColladaModel("Venom.dae");
+	renderer.addObject(&collada);
 
 	Camera camera;
 	camera.setPosition(0, 0, 5);
 	renderer.addCamera(&camera);
 
-	ColladaModel collada= ColladaModel("Venom.dae");
-	renderer.addObject(&collada);
 
 
 	while (1)
