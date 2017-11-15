@@ -24,21 +24,22 @@ void InputHandler::initialize()
 
 void InputHandler::processKeyboard(unsigned char key, int x, int y)
 {
+	
 	Camera* activeCamera;
 	//keyboard callback function
 	switch (key)
 	{
 		//TODO
-	case '8': activeCamera = m_renderer.getActiveCamera();
+	case 'w': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0, 0.1, 0);
 		break;
-	case '2': 
+	case 'a': 
 		activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0, -0.1, 0); break;
-	case '6': activeCamera = m_renderer.getActiveCamera();
+	case 'd': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0.1, 0, 0);
 		break;
-	case '4': activeCamera = m_renderer.getActiveCamera();
+	case 's': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(-0.1, 0, 0);
 		break;
 	case '+': activeCamera = m_renderer.getActiveCamera();
@@ -46,6 +47,15 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 		break;
 	case '-': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0, 0, 0.1);
+		break;
+	case 'c': 
+		m_renderer.activeNextCamera();
+		break;
+	case '0':
+		m_renderer.activeLight(0);
+		break;
+	case '1':
+		m_renderer.activeLight(1);
 		break;
 	case 27: exit(0);
 	}

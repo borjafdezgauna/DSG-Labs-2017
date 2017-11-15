@@ -57,6 +57,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collada.cpp" />
     <ClCompile Include="GraphicObject3D.cpp" />
+    <ClCompile Include="Luces.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -66,6 +67,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColladaModel.h" />
+    <ClInclude Include="Luces.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="GraphicObject3D.h" />
     <ClInclude Include="InputHandler.h" />

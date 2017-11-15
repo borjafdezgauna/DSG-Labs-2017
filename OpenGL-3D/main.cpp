@@ -17,18 +17,17 @@ int main(int argc, char** argv)
 
 
 	//init objects
-	ColladaModel colladaModel1 = ColladaModel("EM208_heavy.dae");
-	renderer.addObject(&colladaModel1);
-	Sphere sphere1;
-	sphere1.setColor(255, 0, 0);
-	//renderer.addObject(&sphere1);
-	sphere1.setPosition(1, 0, 1);
-	Sphere sphere2;
-	sphere2.setColor(0, 255, 0);
+	//ColladaModel colladaModel1 = ColladaModel("EM208_heavy.dae");
+	//renderer.addObject(&colladaModel1);
+	//Sphere sphere1;
+	//sphere1.setColor(255, 0, 0);
+	////renderer.addObject(&sphere1);
+	//sphere1.setPosition(1, 0, 1);
+	//Sphere sphere2;
+	//sphere2.setColor(0, 255, 0);
 	//renderer.addObject(&sphere2);
-	Camera camera;
-	camera.setPosition(0, 0, 5);
-	renderer.addCamera(&camera);
+	renderer.cargarEscena("escena.xml");
+
 
 
 	while (1)

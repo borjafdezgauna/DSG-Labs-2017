@@ -5,6 +5,7 @@
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "Camera.h"
 #include "ColladaModel.h"
+#include "Luces.h"
 
 Renderer* Renderer::m_pRenderer = nullptr;
 
@@ -29,17 +30,6 @@ void Renderer::initialize(int argc, char** argv)
 	glutInitWindowSize(1024, 768);
 	glutCreateWindow(argv[0]);
 	//glutFullScreen();
-	GLfloat light_ambient[] = { 0.0,0.0,0.0,1.0 }; 
-	GLfloat light_diffuse[] = { 1.0,1.0,1.0,1.0 }; 
-	GLfloat light_specular[] = { 1.0,1.0,1.0,1.0 }; 
-	GLfloat light_position[] = { 1.0,1.0,1.0,0.0 }; 
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient); 
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse); 
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular); 
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position); 
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
 
 	//callback functions
 	glutDisplayFunc(__drawScene);
@@ -61,11 +51,34 @@ void Renderer::addObject(GraphicObject3D* pObj)
 {
 	m_objects3D.push_back(pObj);
 }
+void Renderer::activeNextCamera()
+{
+	indexCamera = (indexCamera + 1) % (m_cameras.size());
+	m_pActiveCamera = m_cameras[indexCamera];
+
+}
+
+
+vector <Camera*> Renderer::getCameras()
+{
+	return m_cameras;
+}
+
+void Renderer::activeLight(int i)
+{
+	m_luces[i]->cambiarActivacion();
+}
+
+void Renderer::addLight(Luces* pLuz)
+{
+	m_luces.push_back(pLuz);
+}
 
 void Renderer::addCamera(Camera* pCamera)
 {
 	m_cameras.push_back(pCamera);
 	m_pActiveCamera = pCamera;
+	indexCamera = m_cameras.size() - 1;
 }
 
 Camera* Renderer::getActiveCamera()
@@ -99,7 +112,7 @@ void Renderer::cargarEscena(char* path)
 	doc.LoadFile(path);
 	tinyxml2::XMLElement* scene = doc.FirstChildElement("scene");
 	tinyxml2::XMLElement* models = scene->FirstChildElement("Models");
-	tinyxml2::XMLElement* model = scene->FirstChildElement("Model");
+	tinyxml2::XMLElement* model = models->FirstChildElement("Model");
 	while (model != 0) {
 		const char* path= model->Attribute("Path");
 		ColladaModel* pNewModel = new ColladaModel((char*)path);
@@ -109,11 +122,43 @@ void Renderer::cargarEscena(char* path)
 		const char* pitch = model->Attribute("pitch");
 		const char* yaw = model->Attribute("yaw");
 		const char* roll = model->Attribute("roll");
-		pNewModel->setPosition((int)x, (int)y, (int)z);
-		pNewModel->setRotation((int)pitch, (int)yaw, (int)roll);
+		pNewModel->setPosition(atof(x), atof(y), atof(z));
+		pNewModel->setRotation(atof(yaw), atof(pitch), atof(roll));
+
+		//add the model to the list
+		addObject(pNewModel);
 		model = model->NextSiblingElement("Model");
 	}
-	const char* ptextura = models->GetText();
+	tinyxml2::XMLElement* camaras = scene->FirstChildElement("Camaras");
+	tinyxml2::XMLElement* camara = camaras->FirstChildElement("Camara");
+	while (camara != 0) {
+		Camera* camera=new Camera();
+		const char* x = camara->Attribute("x");
+		const char* y = camara->Attribute("y");
+		const char* z = camara->Attribute("z");
+		const char* pitch = camara->Attribute("pitch");
+		const char* yaw = camara->Attribute("yaw");
+		const char* roll = camara->Attribute("roll");
+		camera->setPosition(atof(x), atof(y), atof(z));
+		camera->setRotation(atof(yaw), atof(pitch), atof(roll));
+		addCamera(camera);
+		camara = camara->NextSiblingElement("Camara");
+	}
+	tinyxml2::XMLElement* luces = scene->FirstChildElement("Luces");
+	tinyxml2::XMLElement* luz = luces->FirstChildElement("Luz");
+	while (luz != 0) {
+		const char* amb_r = luz->Attribute("amb_r");
+		const char* amb_g = luz->Attribute("amb_g");
+		const char* amb_b = luz->Attribute("amb_b");
+		const char* dif_r = luz->Attribute("dif_r");
+		const char* dif_g = luz->Attribute("dif_g");
+		const char* dif_b = luz->Attribute("dif_b");
+		Luces* luces = new Luces(atof(amb_r), atof(amb_g), atof(amb_b), atof(dif_r), atof(dif_g), atof(dif_b));
+		addLight(luces);
+
+		luz = luz->NextSiblingElement("Luz");
+	}
+	
 }
 
 
