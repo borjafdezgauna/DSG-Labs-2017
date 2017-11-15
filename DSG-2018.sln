@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL-2D", "OpenGL-2D\Open
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL-3D", "OpenGL-3D\OpenGL-3D.vcxproj", "{213043B4-754C-4AF7-8AF5-28AA69F8189B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyxml2", "3rd-party\tinyxml2\tinyxml2.vcxproj", "{D1C528B6-AA02-4D29-9D61-DC08E317A70D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{213043B4-754C-4AF7-8AF5-28AA69F8189B}.Release|x64.ActiveCfg = Release|x64
 		{213043B4-754C-4AF7-8AF5-28AA69F8189B}.Release|x64.Build.0 = Release|x64
 		{213043B4-754C-4AF7-8AF5-28AA69F8189B}.Release|x86.ActiveCfg = Release|x64
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Debug|x64.ActiveCfg = Debug|x64
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Debug|x64.Build.0 = Debug|x64
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Debug|x86.ActiveCfg = Debug|Win32
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Debug|x86.Build.0 = Debug|Win32
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Release|x64.ActiveCfg = Release|x64
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Release|x64.Build.0 = Release|x64
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Release|x86.ActiveCfg = Release|Win32
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C32FB2B4-500C-43CD-A099-EECCE079D3F1} = {3E03C507-908F-4DED-B769-4FF1CFFCC7DD}
 		{5A98782E-7027-46F9-91E1-E1EDE1E14BF4} = {3E03C507-908F-4DED-B769-4FF1CFFCC7DD}
+		{D1C528B6-AA02-4D29-9D61-DC08E317A70D} = {3E03C507-908F-4DED-B769-4FF1CFFCC7DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7966580-7F69-4477-8FC0-0319C3B64017}
