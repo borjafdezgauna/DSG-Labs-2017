@@ -52,9 +52,9 @@ void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, std::vect
 }
 void ColladaModel::draw()
 {
-
-	glEnable(GL_TEXTURE);
+	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, textureId);
+	glTexEnvf(GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glBegin(GL_TRIANGLES);
 	int tamaño = m_triangles.size();
 	for (int j = 0; j <tamaño; j++)
@@ -64,7 +64,7 @@ void ColladaModel::draw()
 		int offset2 = numTriangulo * 2;
 		glNormal3f(m_normals[offset3], m_normals[offset3 + 1], m_normals[offset3 + 2]);
 
-		glTexCoord2f(m_texCoords[offset2], m_texCoords[offset2 + 1]);
+		glTexCoord2f(m_texCoords[offset2], 1-m_texCoords[offset2 + 1]);
 		glVertex3f(m_positions[offset3], m_positions[offset3 + 1], m_positions[offset3 + 2]);
 	}
 	glEnd();
