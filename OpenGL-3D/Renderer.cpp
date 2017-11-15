@@ -3,6 +3,8 @@
 #include "GraphicObject3D.h"
 #include "Camera.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
+#include "Camera.h"
+#include "ColladaModel.h"
 
 Renderer* Renderer::m_pRenderer = nullptr;
 
@@ -88,6 +90,30 @@ void Renderer::drawScene()
 		(*it)->draw();
 		glPopMatrix();
 	}
+}
+
+
+void Renderer::cargarEscena(char* path)
+{
+	tinyxml2::XMLDocument doc;
+	doc.LoadFile(path);
+	tinyxml2::XMLElement* scene = doc.FirstChildElement("scene");
+	tinyxml2::XMLElement* models = scene->FirstChildElement("Models");
+	tinyxml2::XMLElement* model = scene->FirstChildElement("Model");
+	while (model != 0) {
+		const char* path= model->Attribute("Path");
+		ColladaModel* pNewModel = new ColladaModel((char*)path);
+		const char* x = model->Attribute("x");
+		const char* y = model->Attribute("y");
+		const char* z = model->Attribute("z");
+		const char* pitch = model->Attribute("pitch");
+		const char* yaw = model->Attribute("yaw");
+		const char* roll = model->Attribute("roll");
+		pNewModel->setPosition((int)x, (int)y, (int)z);
+		pNewModel->setRotation((int)pitch, (int)yaw, (int)roll);
+		model = model->NextSiblingElement("Model");
+	}
+	const char* ptextura = models->GetText();
 }
 
 

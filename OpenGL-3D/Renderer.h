@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../3rd-party/tinyxml2/tinyxml2.h"
+
 class GraphicObject3D;
 class Camera;
 #include <vector>
@@ -30,7 +32,9 @@ public:
 
 	void reshapeWindow(int x, int y);
 
+	void cargarEscena(char* path);
+
 	static void __drawScene();
 	static void __reshapeWindow(int x, int y);
-};
+	};
 
