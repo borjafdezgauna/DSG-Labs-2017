@@ -4,6 +4,7 @@
 #include "Sphere.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "Camera.h"
+#include "ColladaModel.h"
 
 
 int main(int argc, char** argv)
@@ -14,18 +15,21 @@ int main(int argc, char** argv)
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
+	ColladaModel colladaModel1 = ColladaModel("EM208_heavy.dae");
+	colladaModel1.setRotation(0, 270, 0);
+	renderer.addObject(&colladaModel1);
 
 	//init objects
-	Sphere sphere1;
-	sphere1.setColor(255, 0, 0);
-	
-	sphere1.setPosition(0, 0, 3);
-	Sphere sphere2;
-	sphere2.setColor(0, 255, 0);
-	sphere2.setPosition(0, 0, 1);
+	//Sphere sphere1;
+	//sphere1.setColor(255, 0, 0);
+	//
+	//sphere1.setPosition(0, 0, 3);
+	//Sphere sphere2;
+	//sphere2.setColor(0, 255, 0);
+	//sphere2.setPosition(0, 0, 1);
 
-	renderer.addObject(&sphere2);
-	renderer.addObject(&sphere1);
+	//renderer.addObject(&sphere2);
+	//renderer.addObject(&sphere1);
 
 	Camera camera;
 	camera.setPosition(0, 0, 5);
