@@ -64,7 +64,7 @@ void ColladaModel::draw()
 		int offset2 = numTriangulo * 2;
 		glNormal3f(m_normals[offset3], m_normals[offset3 + 1], m_normals[offset3 + 2]);
 
-		glTexCoord2f(m_texCoords[offset2], 1-m_texCoords[offset2 + 1]);
+		glTexCoord2f(m_texCoords[offset2], m_texCoords[offset2 + 1]);
 		glVertex3f(m_positions[offset3], m_positions[offset3 + 1], m_positions[offset3 + 2]);
 	}
 	glEnd();
