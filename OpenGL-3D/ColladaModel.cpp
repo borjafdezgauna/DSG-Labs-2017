@@ -4,7 +4,7 @@
 #include "../3rd-party/SOIL/src/SOIL.h"
 
 
-ColladaModel::ColladaModel(char* modelURL)
+ColladaModel::ColladaModel(const char* modelURL)
 {
 	tinyxml2::XMLDocument doc;
 	doc.LoadFile(modelURL);

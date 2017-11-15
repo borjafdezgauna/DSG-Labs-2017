@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PROJECT>
+	<scene name="Escena0" id="0">
+		<Objects>
+			<Object name="Objeto0" id="0">
+        <url>EM208_heavy.dae</url>
+        <position_float_array>0.0 0.0 0.0</position_float_array>
+        <rotation_float_array>0.0 270.0 0.0</rotation_float_array>
+        <scale_float_array>1.0 1.0 1.0</scale_float_array>
+			</Object>
+      <Object name="Objeto1" id="1">
+        <url>EM208_heavy.dae</url>
+        <position_float_array>2.0 0.0 0.0</position_float_array>
+        <rotation_float_array>0.0 0.0 0.0</rotation_float_array>
+        <scale_float_array>1.0 1.0 1.0</scale_float_array>
+      </Object>
+		</Objects>
+		<Cameras>
+			<Camera name="Camera0" id="0">
+        <position_float_array>0.0 0.0 0.0</position_float_array>
+				<rotation_float_array>0.0 0.0 0.0</rotation_float_array>
+			</Camera>
+		</Cameras>
+	</scene>
+</PROJECT>

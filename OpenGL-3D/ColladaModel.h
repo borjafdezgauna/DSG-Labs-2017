@@ -19,7 +19,7 @@ class ColladaModel : public GraphicObject3D
 
 
 public:
-	ColladaModel(char* modelURL);
+	ColladaModel(const char* modelURL);
 	~ColladaModel();
 	void ColladaModel::draw();
 
