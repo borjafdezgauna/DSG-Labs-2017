@@ -9,7 +9,8 @@
 		<Camara x="0" y="0" z="5" pitch="0" yaw="-30" roll="0"/>
 	</Camaras>
 	<Luces>
-		<Luz amb_r="1" amb_g="0" amb_b="0" dif_r="1" dif_g="0" dif_b="0"/>
+		<Luz amb_r="0" amb_g="0" amb_b="0" dif_r="1" dif_g="0" dif_b="0"/>
 		<Luz amb_r="0" amb_g="0" amb_b="0" dif_r="0" dif_g="1" dif_b="0"/>
+		<Luz amb_r="0" amb_g="0" amb_b="0" dif_r="0" dif_g="0" dif_b="1"/>
 	</Luces>
 </scene>

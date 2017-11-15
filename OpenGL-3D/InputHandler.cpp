@@ -33,13 +33,13 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 	case 'w': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0, 0.1, 0);
 		break;
-	case 'a': 
+	case 's': 
 		activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0, -0.1, 0); break;
 	case 'd': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(0.1, 0, 0);
 		break;
-	case 's': activeCamera = m_renderer.getActiveCamera();
+	case 'a': activeCamera = m_renderer.getActiveCamera();
 		activeCamera->addPositionOffset(-0.1, 0, 0);
 		break;
 	case '+': activeCamera = m_renderer.getActiveCamera();
@@ -56,6 +56,9 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 		break;
 	case '1':
 		m_renderer.activeLight(1);
+		break;
+	case '2':
+		m_renderer.activeLight(2);
 		break;
 	case 27: exit(0);
 	}
