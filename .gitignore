@@ -339,3 +339,12 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+/MyProject/Saved/Logs/UE4CC-Windows-569A97C84329BE3D688FD1A5A3BA05B3/CrashReportClient.ini
+/MyProject/Saved/Logs/UE4CC-Windows-569A97C84329BE3D688FD1A5A3BA05B3
+/MyProject/Saved/Logs/UE4CC-Windows-53D61D374EA6FC3E1141E2A53769F2E9/CrashReportClient.ini
+/MyProject/Saved/Logs/UE4CC-Windows-53D61D374EA6FC3E1141E2A53769F2E9
+/MyProject/Saved/Logs/UE4CC-Windows-4D40D3DC41CAF0553F2863B12CE178B3/CrashReportClient.ini
+/MyProject/Saved/Logs/UE4CC-Windows-4D40D3DC41CAF0553F2863B12CE178B3
+/MyProject/Saved/Logs/UE4CC-Windows-09F053F148D2D0A4EB41CB984DCA9EE4/CrashReportClient.ini
+/MyProject/Saved/Logs/UE4CC-Windows-09F053F148D2D0A4EB41CB984DCA9EE4
+/MyProject/Saved/Logs
